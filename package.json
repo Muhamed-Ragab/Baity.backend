@@ -1,0 +1,45 @@
+{
+  "name": "baity.backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server.js",
+  "module": "dist/server.js",
+  "scripts": {
+    "dev": "bun run --env-file=.env --hot src/server.ts",
+    "build": "tsup",
+    "start": "bun dist/server.js",
+    "better-auth:generate": "bunx @better-auth/cli generate --output=./src/db/schema/auth.schema.ts --y",
+    "better-auth:secret": "bunx @better-auth/cli secret",
+    "db:push": "bun drizzle-kit push",
+    "db:generate": "bun drizzle-kit generate",
+    "db:migrate": "bun drizzle-kit migrate",
+    "db:studio": "bun drizzle-kit studio",
+    "db:check": "bun drizzle-kit check"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hono/zod-validator": "^0.4.3",
+    "better-auth": "^1.2.0",
+    "cloudinary": "^2.5.1",
+    "drizzle-orm": "^0.40.0",
+    "drizzle-seed": "^0.3.1",
+    "hono": "^4.7.2",
+    "http-status-codes": "^2.3.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.10.0",
+    "pg": "^8.13.3",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.4",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.13.8",
+    "@types/nodemailer": "^6.4.17",
+    "drizzle-kit": "^0.30.5",
+    "prettier": "^3.5.2",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "tsup": "^8.4.0"
+  }
+}
