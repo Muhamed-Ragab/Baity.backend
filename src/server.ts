@@ -1,4 +1,3 @@
-import { heapStats } from "bun:jsc";
 import { Hono } from "hono";
 import { bodyLimit } from "hono/body-limit";
 import { cors } from "hono/cors";
@@ -45,17 +44,12 @@ app.use(
 
 // Health check
 app.get("/", async (c) => {
-  const heapStatus = heapStats();
   return c.json({
     status: "healthy",
     apiVersion: "v1",
     environment: env.NODE_ENV,
-    uptime: `${Math.floor(Bun.nanoseconds() / 1_000_000_000)} sec`,
-    heap: {
-      size: `${Math.floor(heapStatus.heapSize / 1024 / 1024)} MB`,
-      capacity: `${Math.floor(heapStatus.heapCapacity / 1024 / 1024)} MB`,
-      extraMemorySize: `${Math.floor(heapStatus.extraMemorySize / 1024 / 1024)} MB`,
-    },
+    uptime: `${Math.floor(process.uptime())} sec`,
+    memory: `${Math.floor(process.memoryUsage().heapUsed / 1024 / 1024)} MB`,
   });
 });
 
